@@ -13,21 +13,38 @@ For each big fasta file, an index was made and stored in a `mysql` table. At the
 
 ### Steps:
 #### Install software
-(ommited)
-#### Prepare database
-In the mysql shell
+1. Install Mysql and Ruby according to the system manual
+2. Install the packages used by the ruby scripts as below
+
+On debian Linux and its derived distributions
 ```bash
->create database refseq_db;
->grant all privileges on refseq_db.* to "jhy"@"localhost" identified by "topscrete";
+sudo apt install libmysqlclient-dev
+sudo apt install ruby-dev
+sudo apt install make
+sudo gem install rake
+sudo gem install mysql2
+```
+On Red Hat/CentOS and other distributions using yum
+```
+sudo yum install mysql-devel
+```
+and install the gems
+
+#### Prepare database
+In the mysql client interface
+```sql
+>create database refseq_db
+>create user  'refseq_db_user'@'localhost' identified by 'topscrete';
+>grant all privileges on refseq_db.* to 'refseq_db_user'@'localhost';
 >flush privileges;
 ```
 Here, you can change database name and password to your own ones.
 
 #### Creat table
 ```bash
->ruby create_fasta_info_table.rb jhy topscrete refseq_db
+>ruby create_fasta_info_table.rb refseq_db_user topscrete refseq_db
 ```
-*Change the db_user and db_password and db_name 
+**Change the db_user and db_password and db_name**
 
 #### Make index
 ```

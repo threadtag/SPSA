@@ -3,7 +3,7 @@
 # usage: ruby fasta_index.rb fasta_file > fasta.index
 # fasta.index : each line composed of >seq_name ||start_pointer||end_pointer
 
-if ARGV.zize < 1
+if ARGV.size < 1
 	puts "ruby fasta_index.rb fasta_file > fasta.index"
 end
 
